@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "cipriano.media",
+  "name": "Media player",
+  "version": "1.0.0",
+  "author": "Cipriano",
+  "license": "MIT",
+  "description": "MPRIS media control service",
+  "kinds": [
+    "service",
+    "bar-widget"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "service": "Service.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Media player",
+    "description": "Compact MPRIS media player with playback controls",
+    "category": "Media",
+    "allowMultiple": false
+  },
+  "omarchy": {
+    "clonedFrom": "omarchy.media"
+  }
+}
