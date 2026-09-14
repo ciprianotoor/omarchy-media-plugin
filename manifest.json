@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "cipriano.media",
+  "id": "io.github.ciprianotoor.omarchy-media",
   "name": "Media player",
   "version": "1.0.0",
   "author": "Cipriano",
@@ -20,8 +20,5 @@
     "description": "Compact MPRIS media player with playback controls",
     "category": "Media",
     "allowMultiple": false
-  },
-  "omarchy": {
-    "clonedFrom": "omarchy.media"
   }
 }

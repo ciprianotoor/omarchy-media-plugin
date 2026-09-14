@@ -36,6 +36,12 @@ having two media widgets:
 omarchy plugin disable omarchy.media
 ```
 
+To remove this plugin completely:
+
+```bash
+omarchy plugin remove io.github.ciprianotoor.omarchy-media
+```
+
 ## Controls
 
 - Left click: play or pause.
