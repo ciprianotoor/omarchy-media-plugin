@@ -36,6 +36,72 @@ having two media widgets:
 omarchy plugin disable omarchy.media
 ```
 
+## Marketplace status / Estado del marketplace
+
+### Español
+
+El plugin fue enviado al marketplace de Omarchy y está pendiente de revisión.
+Mientras espera la aprobación, puede instalarse directamente desde GitHub:
+
+```bash
+omarchy plugin add https://github.com/ciprianotoor/omarchy-media-plugin.git --enable
+```
+
+Para actualizarlo o eliminarlo:
+
+```bash
+omarchy plugin update io.github.ciprianotoor.omarchy-media
+omarchy plugin remove io.github.ciprianotoor.omarchy-media
+```
+
+### English
+
+This plugin has been submitted to the Omarchy marketplace and is awaiting
+review. While approval is pending, install it directly from GitHub:
+
+```bash
+omarchy plugin add https://github.com/ciprianotoor/omarchy-media-plugin.git --enable
+```
+
+Update or remove it with:
+
+```bash
+omarchy plugin update io.github.ciprianotoor.omarchy-media
+omarchy plugin remove io.github.ciprianotoor.omarchy-media
+```
+
+### Português
+
+Este plugin foi enviado ao marketplace do Omarchy e está aguardando revisão.
+Enquanto a aprovação estiver pendente, instale-o diretamente pelo GitHub:
+
+```bash
+omarchy plugin add https://github.com/ciprianotoor/omarchy-media-plugin.git --enable
+```
+
+Para atualizar ou remover:
+
+```bash
+omarchy plugin update io.github.ciprianotoor.omarchy-media
+omarchy plugin remove io.github.ciprianotoor.omarchy-media
+```
+
+### Français
+
+Ce plugin a été soumis au marketplace d’Omarchy et est en attente de
+validation. En attendant, installez-le directement depuis GitHub :
+
+```bash
+omarchy plugin add https://github.com/ciprianotoor/omarchy-media-plugin.git --enable
+```
+
+Pour le mettre à jour ou le supprimer :
+
+```bash
+omarchy plugin update io.github.ciprianotoor.omarchy-media
+omarchy plugin remove io.github.ciprianotoor.omarchy-media
+```
+
 To remove this plugin completely:
 
 ```bash
@@ -60,6 +126,29 @@ From the repository root:
 
 ```bash
 omarchy plugin validate .
+```
+
+## Update script
+
+If you cloned this repository locally, you can check for updates and apply
+them only after confirmation:
+
+```bash
+./update.sh
+```
+
+The script verifies the repository and remote, refuses to overwrite local
+changes, shows the pending commits, performs a fast-forward-only update, and
+validates the plugin afterward. To approve an update non-interactively:
+
+```bash
+./update.sh --yes
+```
+
+For a plugin installed through Omarchy, use the plugin manager instead:
+
+```bash
+omarchy plugin update io.github.ciprianotoor.omarchy-media
 ```
 
 ## License
