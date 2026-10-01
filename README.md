@@ -1,5 +1,8 @@
 # Media player for Omarchy
 
+See [CHANGELOG.md](CHANGELOG.md) for the reason behind the restoration of the
+original interface.
+
 An Omarchy 4 shell plugin that adds an MPRIS media control widget to the
 Quickshell bar. It supports play/pause, previous/next track, album art,
 source selection, desktop notifications, and a Cava visualizer in the popup.
