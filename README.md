@@ -115,6 +115,8 @@ omarchy plugin remove io.github.ciprianotoor.omarchy-media
 - Right click: open or close the media panel.
 - Mouse wheel: previous or next track.
 - Panel buttons: previous, play/pause, and next.
+- Cava visualizer: use the `CAVA VISUALIZER` control in the panel to enable or
+  disable the visualizer without disabling media controls.
 
 The service exposes the following shell IPC actions:
 `status`, `playPause`, `play`, `pause`, `next`, `previous`, `sourceNext`,
