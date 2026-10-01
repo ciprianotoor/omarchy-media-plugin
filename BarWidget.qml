@@ -16,12 +16,10 @@ BarWidget {
   readonly property string playIcon: activePlayer && activePlayer.isPlaying ? "󰏤" : "󰐊"
   readonly property string title: activePlayer ? (activePlayer.trackTitle || "") : ""
   readonly property string artist: activePlayer ? (activePlayer.trackArtist || "") : ""
-  readonly property string barLabel: root.hasMedia ? root.title : "No media"
   readonly property color themeAccent: Color.accent
   readonly property color visualizerColor: Style.selectedStateColor(root.bar.foreground, root.themeAccent)
 
   property bool popupOpen: false
-  property bool cavaEnabled: true
   property var spectrum: []
 
   function close() { popupOpen = false }
@@ -36,19 +34,6 @@ BarWidget {
   visible: true
   implicitWidth: row.implicitWidth + Style.space(14)
   implicitHeight: barSize
-
-  Rectangle {
-    anchors.fill: row
-    anchors.margins: -Style.space(5)
-    z: -1
-    radius: Style.spacing.labelGap
-    color: root.hasMedia
-      ? Style.selectedFillFor(root.bar.foreground, root.themeAccent)
-      : "transparent"
-    border.color: root.hasMedia ? root.themeAccent : "transparent"
-    border.width: root.hasMedia ? 1 : 0
-    opacity: 0.9
-  }
 
   Row {
     id: row
@@ -67,18 +52,6 @@ BarWidget {
         enabled: !root.bar || root.bar.foregroundAnimationEnabled
         ColorAnimation { duration: 160 }
       }
-    }
-
-    Text {
-      textFormat: Text.PlainText
-      text: root.barLabel
-      visible: root.hasMedia
-      width: Math.min(Style.space(150), implicitWidth)
-      elide: Text.ElideRight
-      color: root.bar.barForeground
-      font.family: root.bar.fontFamily
-      font.pixelSize: Style.font.caption
-      anchors.verticalCenter: parent.verticalCenter
     }
 
   }
@@ -110,7 +83,7 @@ BarWidget {
   Process {
     id: cavaProcess
     command: ["cava", "-p", Qt.resolvedUrl("cava.conf").toString().replace("file://", "")]
-    running: root.cavaEnabled
+    running: true
     stdout: SplitParser {
       onRead: function(line) { root.updateSpectrum(line) }
     }
@@ -129,98 +102,6 @@ BarWidget {
       id: column
       anchors.fill: parent
       spacing: Style.space(10)
-
-      Row {
-        width: parent.width
-        spacing: Style.space(8)
-
-        Text {
-          text: "NOW PLAYING"
-          color: root.themeAccent
-          font.family: root.bar.fontFamily
-          font.pixelSize: Style.font.caption
-          font.bold: true
-        }
-
-        Rectangle {
-          width: 1
-          height: Style.space(14)
-          color: Qt.darker(root.bar.foreground, 1.7)
-          anchors.verticalCenter: parent.verticalCenter
-        }
-
-        Text {
-          text: root.sourcePlayers.length > 1
-            ? root.sourcePlayers.length + " sources"
-            : "MPRIS"
-          color: Qt.darker(root.bar.foreground, 1.4)
-          font.family: root.bar.fontFamily
-          font.pixelSize: Style.font.caption
-          anchors.verticalCenter: parent.verticalCenter
-        }
-
-        Item { width: 1; height: 1 }
-      }
-
-      BorderSurface {
-        width: parent.width
-        height: Style.space(34)
-        radius: Style.spacing.labelGap
-        color: root.cavaEnabled
-          ? Style.selectedFillFor(root.bar.foreground, root.themeAccent)
-          : "transparent"
-        borderSpec: root.cavaEnabled
-          ? Border.controlSpec("normal", root.bar.foreground, root.themeAccent)
-          : Border.none()
-
-        Row {
-          anchors.fill: parent
-          anchors.leftMargin: Style.space(10)
-          anchors.rightMargin: Style.space(6)
-          spacing: Style.space(8)
-
-          Text {
-            text: "󰵆"
-            color: root.cavaEnabled ? root.themeAccent : root.bar.foreground
-            font.family: root.bar.fontFamily
-            font.pixelSize: Style.font.body
-            anchors.verticalCenter: parent.verticalCenter
-          }
-
-          Column {
-            width: parent.width - Style.space(76)
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: Style.space(1)
-
-            Text {
-              text: "CAVA VISUALIZER"
-              color: root.bar.foreground
-              font.family: root.bar.fontFamily
-              font.pixelSize: Style.font.caption
-              font.bold: true
-            }
-
-            Text {
-              text: root.cavaEnabled ? "Active" : "Disabled"
-              color: Qt.darker(root.bar.foreground, 1.5)
-              font.family: root.bar.fontFamily
-              font.pixelSize: Style.font.caption
-            }
-          }
-
-          Button {
-            text: root.cavaEnabled ? "CAVA: ACTIVO" : "CAVA: DESACTIVADO"
-            foreground: root.cavaEnabled ? root.themeAccent : root.bar.foreground
-            horizontalPadding: Style.spacing.controlPaddingX
-            verticalPadding: Style.spacing.controlPaddingY
-            anchors.verticalCenter: parent.verticalCenter
-            onClicked: {
-              root.cavaEnabled = !root.cavaEnabled
-              if (!root.cavaEnabled) root.spectrum = []
-            }
-          }
-        }
-      }
 
       Row {
         spacing: Style.space(10)
