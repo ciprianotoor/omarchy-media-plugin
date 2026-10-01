@@ -209,7 +209,7 @@ BarWidget {
           }
 
           Button {
-            iconText: root.cavaEnabled ? "󰔡" : "󰔢"
+            text: root.cavaEnabled ? "CAVA: ACTIVO" : "CAVA: DESACTIVADO"
             foreground: root.cavaEnabled ? root.themeAccent : root.bar.foreground
             horizontalPadding: Style.spacing.controlPaddingX
             verticalPadding: Style.spacing.controlPaddingY
