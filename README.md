@@ -125,6 +125,50 @@ The service exposes the following shell IPC actions:
 `status`, `playPause`, `play`, `pause`, `next`, `previous`, `sourceNext`,
 `sourcePrevious`, `sourceSwitch`, `sourceSwitchPrevious`, and `ping`.
 
+## Bluetooth Media companion
+
+This repository also includes `bluetooth-media/`, a separate bar widget for
+controlling a connected Bluetooth phone or player through BlueZ AVRCP. It is
+intentionally separate from `cipriano.media`: the blue headphones icon is for
+media control, while Omarchy's Bluetooth icon remains responsible for pairing
+and connection management.
+
+The companion widget is always visible. Open it with left click. It reports
+the connected device and shows one of these states:
+
+- `Comprobando compatibilidad multimedia…`
+- `Control multimedia disponible`
+- `Dispositivo no compatible con control multimedia`
+
+The playback buttons are enabled only when BlueZ exposes an AVRCP
+`org.bluez.MediaPlayer1` object. A device can stream audio through A2DP while
+not exposing AVRCP; in that case the red compatibility message is expected.
+
+### Install the companion widget
+
+Copy the `bluetooth-media` directory into the local Omarchy plugin directory:
+
+```bash
+mkdir -p ~/.config/omarchy/plugins
+cp -r bluetooth-media ~/.config/omarchy/plugins/cipriano.bluetooth-media
+```
+
+Add it to the right side of `~/.config/omarchy/shell.json`, after
+`omarchy.bluetooth`:
+
+```json
+{ "id": "cipriano.bluetooth-media" }
+```
+
+Then reload the shell:
+
+```bash
+omarchy restart shell
+```
+
+Left click opens the media controls. Right click, or the yellow
+`Administrar conexión` button, opens Omarchy's Bluetooth connection panel.
+
 ## Validate locally
 
 From the repository root:

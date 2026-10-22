@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "cipriano.bluetooth-media",
+  "name": "Bluetooth Media",
+  "version": "1.0.0",
+  "author": "Cipriano",
+  "description": "Dedicated AVRCP media controls for connected Bluetooth devices",
+  "kinds": ["bar-widget"],
+  "entryPoints": { "barWidget": "BarWidget.qml" },
+  "barWidget": {
+    "displayName": "Bluetooth Media",
+    "description": "Play, pause, previous and next for Bluetooth media devices",
+    "category": "Media",
+    "allowMultiple": false
+  }
+}
