@@ -185,6 +185,51 @@ The main media plugin and the Bluetooth Media companion remain independent.
 Left click opens the media controls. Right click, or the yellow
 `Administrar conexión` button, opens Omarchy's Bluetooth connection panel.
 
+### Example: Nokia 2.4
+
+To use the companion with a Nokia 2.4:
+
+1. Pair and connect the phone from Omarchy's yellow Bluetooth icon.
+2. Open the device options and enable **Media audio**.
+3. Start playing music on the phone.
+4. Open the blue headphones icon in the bar.
+5. Use Previous, Play, Pause, or Next when the status says
+   **Control multimedia disponible**.
+
+If the panel says **Dispositivo no compatible con control multimedia**, the
+phone is connected for audio through A2DP but BlueZ did not expose an AVRCP
+media player. The plugin cannot force AVRCP; disconnecting and reconnecting
+with **Media audio** enabled can make the profile appear when the phone or
+Bluetooth adapter supports it.
+
+The yellow Bluetooth button manages pairing and connections. The blue
+Bluetooth Media button is only for media commands.
+
+### Requirements and supported systems
+
+The plugin is designed for Omarchy 4 on Arch Linux and requires:
+
+- Omarchy Shell / Quickshell with local plugin support.
+- BlueZ and a working Bluetooth adapter.
+- PipeWire and WirePlumber for the audio session.
+- `gdbus` and `busctl` for BlueZ D-Bus discovery and AVRCP commands.
+- A phone, headset, or player that exposes the Bluetooth AVRCP profile.
+
+It may also work on other Arch-based distributions that provide Quickshell,
+BlueZ, PipeWire, `gdbus`, and `busctl`, but the Omarchy bar integration and
+the commands in this README are specific to Omarchy 4. It is not intended for
+generic GNOME, KDE, Windows, or macOS installation.
+
+On Arch/Omarchy, the relevant packages are normally provided by:
+
+```bash
+sudo pacman -S bluez bluez-utils pipewire pipewire-pulse wireplumber glib2
+sudo systemctl enable --now bluetooth
+```
+
+The `gdbus` and `busctl` commands are supplied by the system packages; do not
+install random copies of them from a third-party source.
+
 ## Validate locally
 
 From the repository root:
