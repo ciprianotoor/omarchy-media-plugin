@@ -166,6 +166,22 @@ Then reload the shell:
 omarchy restart shell
 ```
 
+### Update an existing installation
+
+If this repository is already cloned on your machine, update the companion
+widget with:
+
+```bash
+cd ~/omarchy-media-plugin
+git pull
+cp -r bluetooth-media ~/.config/omarchy/plugins/cipriano.bluetooth-media
+omarchy restart shell
+```
+
+The repository publishes the companion widget as a subdirectory, so it is
+installed by copying `bluetooth-media/` into Omarchy's local plugin directory.
+The main media plugin and the Bluetooth Media companion remain independent.
+
 Left click opens the media controls. Right click, or the yellow
 `Administrar conexión` button, opens Omarchy's Bluetooth connection panel.
 
